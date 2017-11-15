@@ -1,0 +1,220 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void imprimir_menu(void);
+void insertar_jedi(void);
+int salir_programa(void);
+
+//ESTRUCTURAS
+typedef struct points{
+   
+    int hit_points;
+    int attack_array[2];
+    int defense_array[2];
+    double speed_array[2];
+    enum level_jedi{T_APPRENTICE,T_MASTER};
+
+}*ptr_points;
+
+typedef struct jedi{
+
+    int ID;
+    char* s_full_name;
+    int size_name;
+    ptr_points puntos;
+}
+Jedi;
+
+
+typedef struct nodos_jedis{
+  Jedi jedi;
+  struct jedis* next;
+}
+Nodos_jedis;
+
+
+struct lista_jedis{
+  nodos_jedis* primero;
+  int tamaño;
+}
+Lista_jedis;
+
+//funcion ejemplo en apuntes de clase seccion 8.4.2 getline
+
+char *intro_cadena(){
+  size_t numero_bytes=0;
+  ssize_t bytes_leidos;
+  char *cadena;
+  
+  numero_bytes=0;
+  cadena=NULL;
+  
+  bytes_leidos=getLine( &cadena, &numero_bytes, stdin);
+  
+  if(bytes_leidos==-1){
+    return NULL;
+    //if el caracter anterior es un espacio, entonces el caracter anterior es /0 = caracter nulo  
+  }else{
+    return (cadena);
+    free (cadena);
+  }
+}
+long *convertir_entero(){
+  char *convertir= intro_cadena();
+  long valor= strtol(convertir,NULL,0);
+  free(convertir);
+  return valor;
+}
+
+Nodo *insertar_jedi(Nodo* primero){
+ 
+  Nodo *insertar=(struct Nodo*) malloc(sizeOf(struct Nodo));
+  
+   if(primero==NULL){
+    primero=insertar;
+   }else{
+     insertar->next=primero;
+     primero=insertar;
+   }
+
+    printf("Insertando Jedi\n");
+      printf("\tDame el ID del Jedi: ");
+      insertar->jedi.ID=intro_cadena();
+      printf("\tDame el nombre del Jedi: ");
+      insertar->jedi.full_name=intro_cadena();
+      printf("\tDame la vida: ");
+      insertar->jedi.hit_points=convertir_entero();
+      printf("\tDame el ataque de aprendiz: ");
+      insertar->jedi.attack_array[0]=convertir_entero();
+      printf("\tDame la defensa de aprendiz: ");
+      insertar->jedi.defense_array[0]=convertir_entero();
+      printf("\tDame el ataque especial: ");
+      insertar->jedi.attack_array[1]=convertir_entero();
+      printf("\tDame la defensa especial: ");
+      insertar->jedi.defense_array[1]=convertir_entero();
+      printf("\tDame la velocidad: ");
+      insertar->jedi.speed_array[0]=convertir_entero();
+      printf("\tDame la velocidad especial: ");
+      insertar->jedi.speed_array[1]=convertir_entero();
+      printf("\tEs maestro (s/N):");
+      insertar->jedi.enum_level=intro_cadena();
+	if(intro_cadena()==s){
+	  printf("\ts");
+	}
+	if(intro_cadena()==n){
+	  pritnf("\tN");
+	}else{
+	  printf("\tError al introducir caracter");
+	}
+}
+  
+ 
+void mostrar_jedis(Nodo* primero){
+  
+     if(Nodo* primero==NULL){
+       printf("\nLa lista esta vacia\n");
+     }else{
+       
+      printf("Insertando Jedi\n");
+
+      printf("\tDame el ID del Jedi: ");
+  	
+      printf("\tDame el nombre del Jedi: ");
+      
+      printf("\tDame la vida: ");
+    
+      printf("\tDame el ataque de aprendiz: ");
+    
+      printf("\tDame la defensa de aprendiz: ");
+    
+      printf("\tDame el ataque especial: ");
+    
+      printf("\tDame la defensa especial: ");
+    
+      printf("\tDame la velocidad: ");
+  
+      printf("\tDame la velocidad especial: ");
+   
+      printf("\tEs maestro (s/N):");
+
+       
+       
+       
+int main(){
+
+  int opcion;
+  int comodin = 0;
+  int contador = 0;
+
+
+  do{
+
+    contador++;
+
+    imprimir_menu();
+
+    printf("\t\t#INFO: %d veces mostrado el menu principal\n\n", contador);
+    printf("\nDame una opcion: \n");
+    scanf("%i",&opcion);
+
+    switch(opcion)
+    {
+
+      case 1:
+	
+	void salir_programa();
+	if(salir_programa() == 0){
+	    return 0;
+	}else{
+	    break;
+	}
+   
+      case 2:
+
+        insertar_jedi();
+        break;
+
+      case 3:
+
+      case 4:
+
+      default: printf("Opcion erronea");
+
+    }
+
+  } while(comodin == 0);
+
+  return 0;
+}
+
+void imprimir_menu(void){
+
+    printf("=========================================\n");
+    printf("[*][2017][SAUCEM APPS][JediManager]======\n");
+    printf("=========================================\n");
+    printf("[1] Salir\n");
+    printf("[2] Insertar Jedi\n");
+    printf("[3] Mostrar Jedis\n");
+    printf("[4] Mostrar Jedi por ID\n");
+    printf("[5] Modificar un Jedi\n");
+    printf("[6] Borrar Jedi por ID\n");
+    printf("[7] Exportar Jedis a fichero binario\n");
+    printf("[8] Importar Jedis de fichero binario\n");
+    printf("[9] Simulador de combate Jedi\n");
+    printf("[10] Ordenar Jedis por puntos de vida\n");
+    printf("[11] Autosalvado Jedi (5 segundos, si ha habido cambios)\n");
+
+}
+
+
+
+int salir_programa(void){
+
+  char charsalida;
+
+  printf("¿Está seguro de que desea salir del programa?[s/N]:\n");
+  scanf("%s", &charsalida);
+
+  return strcmp(&charsalida, "s");
+
+}
