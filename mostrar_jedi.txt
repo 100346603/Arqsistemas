@@ -1,0 +1,14 @@
+void mostrar_resumen(Nodo *primero){
+  if(primero==NULL){
+    printf("Lista vacía");
+  }else{
+    Nodo *resumen;
+    printf("================================\n");
+    printf("|  ID|    Nomb. |Vida|Ata.|Def.|\n");
+    printf("================================\n");
+    for(resumen=primero; resumen=!NULL; resumen= resumen->next){
+      printf("| %d |   %s  | %d | %d | %d |"resumen->jedi.ID, resumen->jedi.s_full_name, resumen->jedi.puntos.hit_points, resumen->jedi.puntos.attack_array[0],resumen->jedi.puntos.puntos.defense_array[0]);
+      printf("================================\n");
+      }
+  }
+}
