@@ -3,17 +3,19 @@
 
 //Estructuras
 
-typedef struct points{
+typedef enum {T_APPRENTICE, T_MASTER} level_jedi;
+
+typedef struct {
 
     int hit_points;
     int attack_array[2];
     int defense_array[2];
     double speed_array[2];
-    enum level_jedi{T_APPRENTICE,T_MASTER}
+    level_jedi level;
 
 }Points;
 
-typedef struct jedi{
+typedef struct {
 
     int ID;
     char* s_full_name;
@@ -21,21 +23,25 @@ typedef struct jedi{
     Points puntos;
 }Jedi;
 
-typedef struct Nodo{
+typedef struct {
   Jedi jedi;
   struct Nodo* next;
 }Nodo;
 
-struct Lista_jedis{
+typedef struct {
   Nodo* primero;
   int tamanio;
-}Lista;
+} Lista;
 
 //Funciones
 
-void imprimir_menu();
-int salir_programa();
-double convertir_entero();
-Nodo *insertar_jedi(Nodo *primero);
+extern void imprimir_menu();
+extern int salir_programa();
+extern double leer_double();
+extern Nodo *insertar_jedi(Nodo *primero);
+extern int leer_entero();
+extern char *intro_cadena();
+extern void mostrar_resumen(Nodo *primero);
+extern void mostrar_info(Nodo *primero);
 
 #endif /*YEDI_H*/
