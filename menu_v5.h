@@ -9,7 +9,7 @@ typedef struct points{
     int attack_array[2];
     int defense_array[2];
     double speed_array[2];
-    enum level_jedi{T_APPRENTICE,T_MASTER};
+    enum level_jedi{T_APPRENTICE,T_MASTER}
 
 }Points;
 
@@ -29,13 +29,13 @@ typedef struct Nodo{
 struct Lista_jedis{
   Nodo* primero;
   int tamanio;
-}Lista_jedis;
+}Lista;
 
 //Funciones
 
 void imprimir_menu();
 int salir_programa();
-
-
+double convertir_entero();
+Nodo *insertar_jedi(Nodo *primero);
 
 #endif /*YEDI_H*/
