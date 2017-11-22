@@ -1,0 +1,23 @@
+void mostrar_info(Nodo *primero){
+  if(primero==NULL){
+    printf("Lista vacía");
+  }else{
+    printf("Indique el ID: \n");
+     int n_ID= convertir_entero;
+     Nodo *j;
+     
+     for(j=primero; j =! NULL; j->next){
+       if(j->jedi.ID== n_id){
+	 printf("= Información completa de Jedi");
+		printf("\n= id: %d",j->jedi.n_id);
+		printf("\n= vida: %d",j->jedi.puntos.hit_points);
+		printf("\n= nombre: %s",j->jedi.s_full_name, j->jedi.puntos.level_jedi);
+		printf("\n= ataque: %d",j->jedi.puntos.attack_array[0]);
+		printf("\n= defensa: %d",j->jedi.puntos.defense_array[0]);
+		printf("\n= s ataque: %d",j->jedi.puntos.attack_array[1]);
+		printf("\n= s defensa: %d",j->jedi.puntos.defense_array[1]);
+		printf("\n= velocidad: %d\n",j->jedi.puntos.speed_array[1]);/////%d? no es para double
+       }
+     }
+  }
+} 
