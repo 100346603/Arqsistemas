@@ -7,8 +7,8 @@
 
 
 void iniciar(Lista* lista){
-  lista->primero=NULL;
-  lista->tamanio=0;
+  lista->primero = NULL;
+  lista->tamanio = 0;
 }
 
 int main(){
@@ -33,7 +33,8 @@ int main(){
 
     printf("\t\t#INFO: %d veces mostrado el menu principal\n\n", contador);
     printf("\nDame una opcion: \n");
-    scanf("%i",&opcion);
+    opcion = leer_entero();
+    //scanf("%i",&opcion);
 
     switch(opcion)
     {
@@ -61,6 +62,11 @@ int main(){
         mostrar_info(primero);
         break;
 
+      case 5:
+	 
+	modificar_jedi(primero);
+	break;
+
       default: printf("Opcion erronea\n\n");
 
     }
@@ -77,7 +83,7 @@ void imprimir_menu(void){
 
 
 
-    printf("=========================================\n");
+    printf("\n=========================================\n");
     printf("[*][2017][SAUCEM APPS][JediManager]======\n");
     printf("=========================================\n");
     printf("[1] Salir\n");
@@ -100,7 +106,7 @@ int salir_programa(void){
   char charsalida;
 
   printf("¿Está seguro de que desea salir del programa?[s/N]:\n");
-  scanf("%s", &charsalida);
+  charsalida = getchar();
 
   return strcmp(&charsalida, "s");
 
@@ -150,7 +156,7 @@ Nodo *insertar_jedi(Nodo *primero){
 
     printf("Insertando Jedi\n");
     printf("\tDame el ID del Jedi: ");
-    insertar->jedi.ID=leer_entero();
+    //insertar->jedi.ID=leer_entero();
     insertar->jedi.ID=leer_entero();
     printf("\tDame el nombre del Jedi: ");
     insertar->jedi.s_full_name=intro_cadena();
@@ -169,7 +175,7 @@ Nodo *insertar_jedi(Nodo *primero){
     printf("\tDame la velocidad especial: ");
     insertar->jedi.puntos.speed_array[1]=leer_double();
     printf("\tEs maestro (s/N):");
-    char j = *intro_cadena();
+    char j = getchar();
     if(j=='s'){
       insertar->jedi.puntos.level = 1;
     }else if(j == 'n'){
@@ -178,10 +184,10 @@ Nodo *insertar_jedi(Nodo *primero){
 
 
      if(primero==NULL){
-      primero=insertar;
+      primero = insertar;
      }else{
-      insertar->next=primero;
-       primero=insertar;
+      insertar->next = primero;
+       primero = insertar;
      }
 
   return primero;
@@ -196,7 +202,7 @@ void mostrar_resumen(Nodo *primero){
     printf("================================\n");
     printf("|  ID|    Nomb. |Vida|Ata.|Def.|\n");
     printf("================================\n");
-    for(j=primero; j!=NULL; j= j->next){
+    for(j=primero; j != NULL; j = j->next){
       printf("| %d |   %s  | %d | %d | %d |\n", j->jedi.ID, j->jedi.s_full_name, j->jedi.puntos.hit_points,
              j->jedi.puntos.attack_array[0], j->jedi.puntos.defense_array[0]);
       printf("================================\n");
@@ -212,9 +218,9 @@ void mostrar_info(Nodo *primero){
      int id = leer_entero();
      Nodo *j;
 
-     for(j=primero; j != NULL; j=j->next){
+     for(j = primero; j != NULL; j = j->next){
        if(j->jedi.ID == id){
-	  printf("= Información completa de Jedi");
+	  printf("Información completa de Jedi");
 		printf("\n= id: %d",j->jedi.ID);
 		printf("\n= vida: %d",j->jedi.puntos.hit_points);
 		printf("\n= nombre: %s, %d",j->jedi.s_full_name, j->jedi.puntos.level);
@@ -222,13 +228,49 @@ void mostrar_info(Nodo *primero){
 		printf("\n= defensa: %d",j->jedi.puntos.defense_array[0]);
 		printf("\n= s ataque: %d",j->jedi.puntos.attack_array[1]);
 		printf("\n= s defensa: %d",j->jedi.puntos.defense_array[1]);
-		printf("\n= velocidad: %lf\n",j->jedi.puntos.speed_array[1]);/////%d? no es para double
+		printf("\n= velocidad: %lf\n",j->jedi.puntos.speed_array[0]);
+		printf("\n= s velocidad: %lf\n",j->jedi.puntos.speed_array[1]);
        }
      }
   }
 }
 
-
+Nodo *modificar_jedi(Nodo* primero){
+  if (primero == NULL){
+        printf("Lista vacia \n");
+    }else{
+        printf("Indique el ID: ");
+        int id = leer_entero();
+        Nodo *j;
+	
+       for (j = primero; j != NULL; j = j->next){
+            if (j->jedi.ID == id)
+            {
+                printf("\n\tID: ");
+                j->jedi.ID = leer_entero();
+		printf("\n\tNombre: ");
+                j->jedi.s_full_name = intro_cadena();
+		//Maestro si o no
+                printf("\n\tVida: ");
+                j->jedi.puntos.hit_points = leer_entero();
+		printf("\n\tAtaque: ");
+                j->jedi.puntos.attack_array[0] = leer_entero();
+		printf("\n\tDefensa: ");
+                j->jedi.puntos.defense_array[0] = leer_entero();
+		printf("\n\tAtaque especial: ");
+                j->jedi.puntos.attack_array[1] = leer_entero();
+		printf("\n\tDefensa especial: ");
+                j->jedi.puntos.defense_array[1] = leer_entero();
+		printf("\n\tVelocidad: ");
+                j->jedi.puntos.speed_array[0] =leer_double();
+		printf("\n\tVelocidad especial: ");
+                j->jedi.puntos.speed_array[1] =leer_double();
+               
+            }
+        }
+    }
+    return primero;
+}
 
 
 

@@ -5,7 +5,7 @@
 
 typedef enum {T_APPRENTICE, T_MASTER} level_jedi;
 
-typedef struct {
+typedef struct points{
 
     int hit_points;
     int attack_array[2];
@@ -15,7 +15,7 @@ typedef struct {
 
 }Points;
 
-typedef struct {
+typedef struct jedi{
 
     int ID;
     char* s_full_name;
@@ -23,12 +23,12 @@ typedef struct {
     Points puntos;
 }Jedi;
 
-typedef struct {
+typedef struct Nodo{
   Jedi jedi;
   struct Nodo* next;
 }Nodo;
 
-typedef struct {
+typedef struct lista_jedi{
   Nodo* primero;
   int tamanio;
 } Lista;
@@ -43,5 +43,6 @@ extern int leer_entero();
 extern char *intro_cadena();
 extern void mostrar_resumen(Nodo *primero);
 extern void mostrar_info(Nodo *primero);
+extern Nodo *modificar_jedi(Nodo* primero);
 
 #endif /*YEDI_H*/
