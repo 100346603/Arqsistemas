@@ -209,13 +209,11 @@ void mostrar_info(Nodo *primero){
     printf("Lista vacía");
   }else{
     printf("Indique el ID: \n");
-     int n_ID;
-      n_ID = leer_entero();
-
+     int id = leer_entero();
      Nodo *j;
 
-     for(j=primero; j =! NULL; j=j->next){
-       if(j->jedi.ID == n_ID){
+     for(j=primero; j != NULL; j=j->next){
+       if(j->jedi.ID == id){
 	  printf("= Información completa de Jedi");
 		printf("\n= id: %d",j->jedi.ID);
 		printf("\n= vida: %d",j->jedi.puntos.hit_points);
