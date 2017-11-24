@@ -67,7 +67,12 @@ int main(){
 	modificar_jedi(primero);
 	break;
 
-      default: printf("Opcion erronea\n\n");
+      case 6:
+
+        primero=borrar_jedi(primero);
+        break;
+
+      default: printf("\nOpcion erronea\n");
 
     }
 
@@ -195,11 +200,11 @@ Nodo *insertar_jedi(Nodo *primero){
 
 void mostrar_resumen(Nodo *primero){
   if(primero==NULL){
-    printf("\nLista vacía");
+    printf("\nLista vacía\n");
   }else{
     Nodo *j;
 
-    printf("================================\n");
+    printf("\n================================\n");
     printf("|  ID|    Nomb. |Vida|Ata.|Def.|\n");
     printf("================================\n");
     for(j=primero; j != NULL; j = j->next){
@@ -212,24 +217,29 @@ void mostrar_resumen(Nodo *primero){
 
 void mostrar_info(Nodo *primero){
   if(primero==NULL){
-    printf("Lista vacía");
+    printf("\nLista vacía\n");
   }else{
-    printf("Indique el ID: \n");
+    printf("Indique ID: \n");
      int id = leer_entero();
      Nodo *j;
 
      for(j = primero; j != NULL; j = j->next){
        if(j->jedi.ID == id){
-	  printf("Información completa de Jedi");
+	  printf("\nInformación completa de Jedi");
 		printf("\n= id: %d",j->jedi.ID);
 		printf("\n= vida: %d",j->jedi.puntos.hit_points);
-		printf("\n= nombre: %s, %d",j->jedi.s_full_name, j->jedi.puntos.level);
-		printf("\n= ataque: %d",j->jedi.puntos.attack_array[0]);
-		printf("\n= defensa: %d",j->jedi.puntos.defense_array[0]);
-		printf("\n= s ataque: %d",j->jedi.puntos.attack_array[1]);
-		printf("\n= s defensa: %d",j->jedi.puntos.defense_array[1]);
-		printf("\n= velocidad: %lf\n",j->jedi.puntos.speed_array[0]);
-		printf("\n= s velocidad: %lf\n",j->jedi.puntos.speed_array[1]);
+		if(j->jedi.puntos.level == 0){
+			printf("\n= nombre: %s, Aprendiz ",j->jedi.s_full_name);
+		}
+		if(j->jedi.puntos.level == 1){
+			printf("\n= nombre: %s, Maestro ",j->jedi.s_full_name);
+		}		
+		printf("\n= ataque de aprendiz: %d",j->jedi.puntos.attack_array[0]);
+		printf("\n= defensa de aprendiz: %d",j->jedi.puntos.defense_array[0]);
+		printf("\n= velocidad de aprendiz: %lf",j->jedi.puntos.speed_array[0]);		
+		printf("\n= ataque de maestro: %d",j->jedi.puntos.attack_array[1]);
+		printf("\n= defensa de maestro: %d",j->jedi.puntos.defense_array[1]);
+		printf("\n= velocidad de maestrol: %lf\n",j->jedi.puntos.speed_array[1]);
        }
      }
   }
@@ -237,9 +247,9 @@ void mostrar_info(Nodo *primero){
 
 Nodo *modificar_jedi(Nodo* primero){
   if (primero == NULL){
-        printf("Lista vacia \n");
+        printf("\nLista vacia \n");
     }else{
-        printf("Indique el ID: ");
+        printf("Indique ID: ");
         int id = leer_entero();
         Nodo *j;
 	
@@ -272,6 +282,39 @@ Nodo *modificar_jedi(Nodo* primero){
     return primero;
 }
 
+Nodo *borrar_jedi(Nodo *primero){
+    if (primero == NULL){
+        printf("\nLista vacia \n");
+    }else{
+        printf("\n Indique ID: ");
+        int id = leer_entero();
+        //************************// Violacion del segmento cuando se introduce algo diferente a número.
+	Nodo *j;
+        Nodo *borrar;
+        
+        if(primero->jedi.ID == id){
+            borrar = primero;
+	    if(primero->next == NULL){
+	      return 0;
+	    }else{
+            primero = primero->next;
+	    }
+            free(borrar->jedi.s_full_name);
+	    free(borrar);
+        }else{
+	  for (j = primero; j != NULL; j = j->next){
+            if (j->next->jedi.ID == id){
+                borrar = j->next;
+                j->next = j->next->next;
+                free(borrar->jedi.s_full_name);
+		free(borrar);
+		
+            }
+	  }
+        }
+    }
+    return primero;
+}
 
 
 

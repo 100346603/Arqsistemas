@@ -44,5 +44,5 @@ extern char *intro_cadena();
 extern void mostrar_resumen(Nodo *primero);
 extern void mostrar_info(Nodo *primero);
 extern Nodo *modificar_jedi(Nodo* primero);
-
+extern Nodo *borrar_jedi(Nodo *primero);
 #endif /*YEDI_H*/
