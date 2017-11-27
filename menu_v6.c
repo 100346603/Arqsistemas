@@ -1,10 +1,22 @@
+/*@authors
+
+Pedro Agreda Jimenez
+Jorge Agustin Aviles Mendez
+Santiago Romero Romero
+Sergio Herencias Redondo
+
+Arquitectura de Sistemas GIST
+
+Universidad Carlos III de Madrid
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include "menu_v6.h"
 
-//Inicia lista
+//Funcion para iniciar lista
 void iniciar(Lista* lista){
   lista->primero = NULL;
   lista->tamanio = 0;
@@ -14,8 +26,8 @@ void iniciar(Lista* lista){
 int main(){
 
   int opcion;
-  int valor_escape = 0;
-  int contador = 0;
+  int valor_escape = 0; //Valor para ejecutar infinitamente el bucle do while
+  int contador = 0; //Contador para ver numero de veces impresas el menu
 
   Lista *nodo_jedi = malloc (sizeof(Nodo));
   iniciar(nodo_jedi);
@@ -34,8 +46,7 @@ int main(){
     printf("\t\t#INFO: %d veces mostrado el menu principal\n\n", contador);
     printf("\nDame una opcion: \n");
     opcion = leer_entero();
-    //scanf("%i",&opcion);
-
+    
     switch(opcion)
     {
 
@@ -163,7 +174,6 @@ Nodo *insertar_jedi(Nodo *primero){
 
     printf("Insertando Jedi\n");
     printf("\tDame el ID del Jedi: ");
-    //insertar->jedi.ID=leer_entero();
     insertar->jedi.ID=leer_entero();
     printf("\tDame el nombre del Jedi: ");
     insertar->jedi.s_full_name=intro_cadena();
