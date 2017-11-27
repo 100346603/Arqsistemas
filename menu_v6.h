@@ -5,7 +5,7 @@
 
 typedef enum {T_APPRENTICE, T_MASTER} level_jedi;
 
-typedef struct points{
+typedef struct points{ //? Puntero?//
 
     int hit_points;
     int attack_array[2];
@@ -45,4 +45,5 @@ extern void mostrar_resumen(Nodo *primero);
 extern void mostrar_info(Nodo *primero);
 extern Nodo *modificar_jedi(Nodo* primero);
 extern Nodo *borrar_jedi(Nodo *primero);
+
 #endif /*YEDI_H*/
