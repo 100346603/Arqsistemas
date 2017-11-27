@@ -6,13 +6,20 @@
 #include "menu_v5.h"
 
 
-
+void iniciar(Lista* lista){
+  lista->primero=NULL;
+  lista->tamanio=0;
+}
 
 int main(){
 
-int opcion;
-int comodin = 0;
-int contador = 0;
+  int opcion;
+  int comodin = 0;
+  int contador = 0;
+
+  Lista *nodo_jedi = (struct Lista_jesi*) malloc (sizeof(Nodo));
+  iniciar(nodo_jedi);
+  Nodo *primero = NULL;
 
 
 
@@ -41,6 +48,7 @@ int contador = 0;
 
       case 2:
 
+        primero=insertar_jedi(primero);
 
         break;
 
@@ -112,24 +120,16 @@ char *intro_cadena(){
   }
 }
 
-double *convertir_entero(){
+double convertir_entero(){
   char *convertir = intro_cadena();
-  double valor = strtod(convertir,NULL);
+  double valor = strtod(convertir, NULL);
   free(convertir);
-
-  return &valor;
+  return valor;
 }
 
-Nodo *insertar_yedi(Nodo *primero){
+Nodo *insertar_jedi(Nodo *primero){
 
   Nodo *insertar=(Nodo*) malloc(sizeof(Nodo));
-
-    if(primero==NULL){
-      primero=insertar;
-    }else{
-      insertar->next=primero;
-       primero=insertar;
-     }
 
     printf("Insertando Jedi\n");
     printf("\tDame el ID del Jedi: ");
@@ -151,11 +151,20 @@ Nodo *insertar_yedi(Nodo *primero){
     printf("\tDame la velocidad especial: ");
     insertar->jedi.puntos.speed_array[1]=convertir_entero();
     printf("\tEs maestro (s/N):");
-    insertar->jedi.puntos.level=intro_cadena();
+    //insertar->jedi.puntos.level_jedi=intro_cadena();
 
 
+     if(primero==NULL){
+      primero=insertar;
+     }else{
+      insertar->next=primero;
+       primero=insertar;
+     }
 
+  return primero;
 }
+
+
 
 
 
