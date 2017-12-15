@@ -46,5 +46,7 @@ extern void mostrar_info(Nodo *primero);
 extern Nodo *modificar_jedi(Nodo* primero);
 extern Nodo *borrar_jedi(Nodo *primero);
 extern Nodo *combate_jedi(Nodo *primero);
+extern void exportar(Nodo *primero);
+extern void importar(Nodo *primero);
 
 #endif /*YEDI_H*/

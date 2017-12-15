@@ -1,4 +1,4 @@
-*@authors
+/*@authors
 Pedro Agreda Jimenez
 Jorge Agustin Aviles Mendez
 Santiago Romero Romero
@@ -42,7 +42,7 @@ int main(){
     printf("\t\t#INFO: %d veces mostrado el menu principal\n\n", contador);
     printf("\nDame una opcion: \n");
     opcion = leer_entero();
-    
+
     switch(opcion)
     {
 
@@ -78,10 +78,21 @@ int main(){
 
         primero = borrar_jedi(primero);
         break;
+
+      case 7: //Exportar fichero
+
+        exportar(primero);
+        break;
+
+      case 8: //Importar fichero
+
+        importar(primero);
+        break;
+
       case 9 : //Simulador de combate
 	combate_jedi(primero);
 	break;
-	  
+
       default: printf("Opcion erronea\n\n");
 
     }
@@ -120,7 +131,7 @@ int salir_programa(){
 
   char charsalida;
 
-  printf("¿Está seguro de que desea salir del programa?[s/N]:\n");
+  printf("ï¿½Estï¿½ seguro de que desea salir del programa?[s/N]:\n");
   charsalida = *intro_cadena();
 
   return strcmp(&charsalida, "s");
@@ -212,7 +223,7 @@ Nodo *insertar_jedi(Nodo *primero){
 //Mostrar stats de Jedi de forma resumida
 void mostrar_resumen(Nodo *primero){
   if(primero==NULL){
-    printf("\nLista vacía\n");
+    printf("\nLista vacï¿½a\n");
   }else{
     Nodo *j;
 
@@ -230,7 +241,7 @@ void mostrar_resumen(Nodo *primero){
 //Mostrar informacion de un jedi, de forma completa pidiendo su ID por teclado
 void mostrar_info(Nodo *primero){
   if(primero==NULL){
-    printf("\nLista vacía\n");
+    printf("\nLista vacï¿½a\n");
   }else{
     printf("Indique el ID: \n");
      int id = leer_entero();
@@ -238,7 +249,7 @@ void mostrar_info(Nodo *primero){
 
      for(j = primero; j != NULL; j = j->next){
        if(j->jedi.ID == id){
-	  printf("Información completa de Jedi");
+	  printf("Informaciï¿½n completa de Jedi");
 		printf("\n= id: %d",j->jedi.ID);
 		printf("\n= vida: %d",j->jedi.puntos.hit_points);
 		if(j->jedi.puntos.level == 0){
@@ -309,7 +320,7 @@ Nodo *borrar_jedi(Nodo *primero){
     }else{
         printf("\n Indique ID: ");
         int id = leer_entero();
-        // Violacion del segmento cuando se introduce algo diferente a número, o numero no encontrado
+        // Violacion del segmento cuando se introduce algo diferente a nï¿½mero, o numero no encontrado
 	      Nodo *j;
         Nodo *borrar;
 
@@ -336,50 +347,23 @@ Nodo *borrar_jedi(Nodo *primero){
     }
     return primero;
 }
-void ordenar_jedi(Nodo *primero){
-    double vida;
-    Nodo *j;
-      if(primero==NULL){
-	printf(“\nLista vacía \n”);
-      }else{
-        for(j=primero; j!=NULL ; j= j->next){
-	  for(
-           if(j->jedi.puntos.hit_points[0]>vida){
-              vida=j->jedi.puntos.hit_points[0];
-           }
-         }
-      }
-Nodo *j; /////????????????????????????????????????????????????????????????????
- for(j=primero; j!=NULL ; j= j->next){
-      if(j->jedi.puntos.hit_points[0]==vida){
-       printf (“\n Jedis ordenados de mayor a menor:) ;
-       printf
-       
-       
-       
- }
-}
-}
 
 
 
-
-
-
-
+//Simulacion combate jedi
 Nodo *combate_jedi(Nodo *primero){
   Nodo *i;
   Nodo *j;
   Nodo *Jedi_1=NULL;
   Nodo *Jedi_2=NULL;
- 
+
   if (primero == NULL){
         printf("\n La lista esta vacia \n");
     }else{
         printf("\n Indique el ID: ");
         int id_1 = leer_entero();
-	
- 
+
+
     for (i = primero; i != NULL; i = i->next){
             if (i->jedi.ID == id_1 && i->jedi.puntos.hit_points > 0){
 	      printf("\nEl Jedi_1 puede combatir\n");
@@ -394,12 +378,12 @@ Nodo *combate_jedi(Nodo *primero){
 	 }
   }//se puede borrar esto?
   if (primero == NULL){
-        printf("\n La lista esta vacia \n");
+      printf("\n La lista esta vacia \n");
    //hasta aqui
     }else{
         printf("\n Indique el ID: ");
         int id_2 = leer_entero();
-      
+
         for (j = primero; j != NULL; j = j->next){
             if (j->jedi.ID == id_2 && j->jedi.puntos.hit_points > 0){
 	      printf("\nEl Jedi_2 puede combatir\n");
@@ -409,33 +393,270 @@ Nodo *combate_jedi(Nodo *primero){
 		}
 	}
 	if(Jedi_2 == NULL){
-	  printf("El pokemon no existe\n");
+	  printf("El pokemonter no existe\n");
 		  return NULL;
 	 }
     }
-  
-    int danyo_1=(Jedi_1->jedi.puntos.speed_array[0]/Jedi_2->jedi.puntos.speed_array[0])*((86+rand()%15)*Jedi_1->jedi.puntos.attack_array[0])/(Jedi_2->jedi.puntos.defense_array[0])/10
-    printf("El Jedi_1 ataca con un daño de: %d\n",danyo_1);
-    int danyo_2=(Jedi_2->jedi.puntos.speed_array[0]/Jedi_1->jedi.puntos.speed_array[0])*((86+rand()%15)*Jedi_2->jedi.puntos.attack_array[0])/(Jedi_1->jedi.puntos.defense_array[0])/10
-    printf("El Jedi_2 ataca con un daño de: %d\n",danyo_2);
-    
+
+    int danyo_1=(Jedi_1->jedi.puntos.speed_array[0]/Jedi_2->jedi.puntos.speed_array[0])*((86+rand()%15)*Jedi_1->jedi.puntos.attack_array[0])/(Jedi_2->jedi.puntos.defense_array[0])/10;
+    printf("El Jedi_1 ataca con un daï¿½o de: %d\n",danyo_1);
+    int danyo_2=(Jedi_2->jedi.puntos.speed_array[0]/Jedi_1->jedi.puntos.speed_array[0])*((86+rand()%15)*Jedi_2->jedi.puntos.attack_array[0])/(Jedi_1->jedi.puntos.defense_array[0])/10;
+    printf("El Jedi_2 ataca con un daï¿½o de: %d\n",danyo_2);
+
     int vida_1 = Jedi_1->jedi.puntos.hit_points = (Jedi_1->jedi.puntos.hit_points)-danyo_2;
     printf("vida actualizada del Jedi_1 es: %d\n", vida_1);
     int vida_2 = Jedi_2->jedi.puntos.hit_points = (Jedi_2->jedi.puntos.hit_points)-danyo_1;
     printf("vida actualizada del Jedi_2 es: %d\n", vida_2);
-    
-    
+
+
     if(vida_1 > 0){
       printf("El Jedi_1 sigue vivo\n");
     }else{
       printf("El Jedi_1 no tiene vida\n");
     }
-    
+
     if(vida_2 > 0){
       printf("El Jedi_2 sigue vivo\n");
     }else{
       printf("El Jedi_2 no tiene vida\n");
     }
-    
+
     return (primero);
+}
+
+//Importar Jedi de fichero binario
+
+void importar(Nodo *primero){
+  int tamanio;
+  int numero_elementos = -1;
+  int i_temp;
+  char *c_temp;
+  FILE *fichero2;
+  printf("Introduce el nombre del fichero:\n");
+  char *nombre_fichero = intro_cadena();
+  fichero2 = fopen(nombre_fichero, "rb");
+  if (fichero2 == NULL){
+    perror("Error al abrir el fichero \n");
+    return ;
+  }
+
+  while (!feof(fichero2) && numero_elementos<=0){
+    Nodo *nuevoNodo= (Nodo*)malloc(sizeof(Nodo));
+
+    numero_elementos = fread(&i_temp, sizeof(int), 1, fichero2);
+
+
+
+    if (numero_elementos != 1){
+      printf ("Error: Un dato no se ha podido leer %d\n",numero_elementos);
+
+    }
+
+    else{
+      nuevoNodo->jedi.ID = i_temp;
+
+    }
+
+    numero_elementos = fread(&tamanio, sizeof(int), 1, fichero2);
+    if (numero_elementos != 1){
+      printf ("Error: Un dato no se ha podido leer \n");
+    }
+    numero_elementos = fread(&c_temp, sizeof(char), tamanio, fichero2);
+    if (numero_elementos != tamanio){
+      printf ("Error: Un dato no se ha podido leer \n");
+    }
+    else{
+      nuevoNodo->jedi.s_full_name = c_temp;
+
+    }
+
+    numero_elementos = fread(&i_temp, sizeof(int), 1, fichero2);
+    if (numero_elementos != 1){
+      printf ("Error: Un dato no se ha podido leer \n");
+    }
+    else{
+      nuevoNodo->jedi.size_name = i_temp;
+
+    }
+
+    numero_elementos = fread(&i_temp, sizeof(int), 1, fichero2);
+    if (numero_elementos != 1){
+      printf ("Error: Un dato no se ha podido leer \n");
+    }
+    else{
+      nuevoNodo->jedi.puntos.hit_points = i_temp;
+
+    }
+
+    numero_elementos = fread(&i_temp, sizeof(int), 1, fichero2);
+    if (numero_elementos != 1){
+      printf ("Error: Un dato no se ha podido leer \n");
+    }
+    else{
+      nuevoNodo->jedi.puntos.attack_array[2] = i_temp;
+
+    }
+
+    numero_elementos = fread(&i_temp, sizeof(int), 1, fichero2);
+    if (numero_elementos != 1){
+      printf ("Error: Un dato no se ha podido leer \n");
+    }
+    else{
+      nuevoNodo->jedi.puntos.defense_array[2] = i_temp;
+
+    }
+    numero_elementos = fread(&i_temp, sizeof(int), 1, fichero2);
+    if (numero_elementos != 1){
+      printf ("Error: Un dato no se ha podido leer \n");
+    }
+    else{
+      nuevoNodo->jedi.puntos.speed_array[2] = i_temp;
+
+    }
+
+    nuevoNodo->next = primero;
+    primero = nuevoNodo;
+
+  }
+   if (ferror(fichero2) != 0){
+    perror ("Error al leer el fichero \n");
+  }
+  else{
+    printf ("El fichero se ha importado correctamente \n");
+  }
+  if (fclose(fichero2) != 0){
+    perror ("Error al cerrar el fichero \n");
+  }
+}
+
+//Exportar fichero
+void exportar(Nodo *primero){
+  int tamanio;
+  int numero_elementos;
+  FILE *fichero1;
+  printf("Introduce el nombre del fichero: \n");
+  char *nombre_fichero = intro_cadena();
+  fichero1 = fopen(nombre_fichero, "wb");
+
+  if (fichero1 == NULL){
+    printf("El fichero no se ha podido abrir \n");
+  }
+  else if (primero == NULL){
+    printf("La lista estÃ¡ vacia \n");
+  }
+  else{
+    Nodo *j;
+    for(j = primero; j != NULL; j = j->next){
+      numero_elementos = fwrite (&(j->jedi.ID), sizeof(int), 1, fichero1);
+      if (numero_elementos != 1){
+	printf ("Error: El dato no se ha podido escribir \n");
+      }
+
+      tamanio = strlen(j->jedi.s_full_name) + 1;
+      numero_elementos = fwrite(&tamanio, sizeof(int), 1, fichero1);
+      if (numero_elementos != 1){
+	printf ("Error: El dato no se ha podido escribir \n");
+      }
+      numero_elementos = fwrite(&(j->jedi.s_full_name), tamanio, 1, fichero1);
+      if (numero_elementos != 1){
+	printf ("Error: El dato no se ha podido escribir \n");
+      }
+
+      numero_elementos = fwrite (&(j->jedi.size_name), sizeof(int), 1, fichero1);
+      if (numero_elementos != 1){
+	printf ("Error: El dato no se ha podido escribir \n");
+      }
+
+      numero_elementos = fwrite (&(j->jedi.puntos.hit_points), sizeof(int), 1, fichero1);
+      if (numero_elementos != 1){
+	printf ("Error: El dato no se ha podido escribir \n");
+      }
+
+      numero_elementos = fwrite (&(j->jedi.puntos.attack_array[2]), sizeof(int), 1, fichero1);
+      if (numero_elementos != 1){
+	printf ("Error: El dato no se ha podido escribir \n");
+      }
+
+      numero_elementos = fwrite (&(j->jedi.puntos.defense_array[2]), sizeof(int), 1, fichero1);
+      if (numero_elementos != 1){
+	printf ("Error: El dato no se ha podido escribir \n");
+      }
+
+      numero_elementos = fwrite(&(j->jedi.puntos.speed_array[2]), sizeof(int), 1, fichero1);
+      if (numero_elementos != 1){
+	printf ("Error: El dato no se ha podido escribir \n");
+      }
+
+    }
+    printf("El fichero se ha exportado correctamente \n");
+  }
+    if (fclose(fichero1) != 0){
+      printf("Error al cerrar el fichero \n");
+    }
+}
+
+int exportar_jedi(Lista *lista){
+    FILE * f_out;
+    f_out=fopen("data_demo.sbm","wb");
+
+    size_t e_escritos;
+    if (f_out== NULL){
+       perror("El fichero no se ha podido abrir para lectura o no existe.\n");
+        return -1;
+    }
+
+    else{
+        Nodo *j;
+        int i, n;
+
+        for (j=lista->primero, i=0; i<lista->tamanio; i++, j=j->next){
+
+            e_escritos=fwrite(&(j->jedi.ID), sizeof(int), 1, f_out);
+            if(e_escritos!=1){
+                 perror("Error: El dato no se ha escrito correctamente \n");
+            }
+
+            n=(int)strlen(j->jedi.s_full_name)+1;
+            e_escritos=fwrite(&n,sizeof(int),1,f_out);
+            if(e_escritos!=1){
+                 perror("Error: El dato no se ha escrito correctamente \n");
+            }
+            e_escritos=fwrite(&(j->jedi.s_full_name), n, 1, f_out);
+            if(e_escritos!=1){
+                 perror("Error: El dato no se ha escrito correctamente \n");
+            }
+
+            e_escritos=fwrite(&(j->jedi.size_name), sizeof(int), 1, f_out);
+            if(e_escritos!=1){
+                 perror("Error: El dato no se ha escrito correctamente \n");
+            }
+
+            e_escritos=fwrite(&(j->jedi.puntos.hit_points), sizeof(int), 1, f_out);
+            if(e_escritos!=1){
+                 perror("Error: El dato no se ha escrito correctamente \n");
+            }
+
+            e_escritos=fwrite(&(j->jedi.puntos.attack_array[2]), sizeof(int), 1, f_out );
+            if(e_escritos!=1){
+                 perror("Error: El dato no se ha escrito correctamente \n");
+            }
+
+            e_escritos=fwrite(&(j->jedi.puntos.defense_array[2]), sizeof(int), 1, f_out);
+            if(e_escritos!=1){
+                 perror("Error: El dato no se ha escrito correctamente \n");
+            }
+
+            e_escritos=fwrite(&(j->jedi.puntos.speed_array[2]), sizeof(int), 1, f_out);
+            if(e_escritos!=1){
+                 perror("Error: El dato no se ha escrito correctamente \n");
+            }
+        }
+        printf("El fichero se ha exportado correctamente \n");
+    }
+
+    if (fclose(f_out)!=0){
+        perror("No se ha podido cerrar el fichero.\n");
+        return -1;
+    }
+    return 0;
 }
